@@ -26,6 +26,10 @@ public class LoginActivity extends AppCompatActivity {
     EditText mPasswordEt;
     Button mLoginButton;
 
+    private static final String[] DUMMY_CREDENTIALS = new String[]{
+            "edwin:edwin", "emma:emma"
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +51,25 @@ public class LoginActivity extends AppCompatActivity {
         String username = mUsernameEt.getText().toString();
         String password = mPasswordEt.getText().toString();
 
-        processLogin(username, password);
+        if(dummyLoginProcess(username,password)){
+            Intent i = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(i);
+            finish();
+        }else{
+            Toast.makeText(LoginActivity.this, "Login failed", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private boolean dummyLoginProcess(String sUsername, String sPassword){
+        for (String credential : DUMMY_CREDENTIALS) {
+            String[] pieces = credential.split(":");
+            if (pieces[0].equals(sUsername)) {
+                // Account exists, return true if the password matches.
+                return pieces[1].equals(sPassword);
+            }
+        }
+
+        return false;
     }
 
     private void processLogin(String email, String password){
