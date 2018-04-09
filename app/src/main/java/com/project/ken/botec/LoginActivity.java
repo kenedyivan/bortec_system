@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -22,7 +23,7 @@ import cz.msebera.android.httpclient.Header;
 
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG = LoginActivity.class.getSimpleName();
-    EditText mUsernameEt;
+    EditText mAuthId;
     EditText mPasswordEt;
     Button mLoginButton;
 
@@ -35,7 +36,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        mUsernameEt = findViewById(R.id.username);
+        mAuthId = findViewById(R.id.auth_id);
         mPasswordEt = findViewById(R.id.password);
         mLoginButton = findViewById(R.id.login_button);
 
@@ -47,20 +48,14 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void loginProcess(){
-        String username = mUsernameEt.getText().toString();
+    private void loginProcess() {
+        String authId = mAuthId.getText().toString();
         String password = mPasswordEt.getText().toString();
 
-        if(dummyLoginProcess(username,password)){
-            Intent i = new Intent(LoginActivity.this, MainActivity.class);
-            startActivity(i);
-            finish();
-        }else{
-            Toast.makeText(LoginActivity.this, "Login failed", Toast.LENGTH_LONG).show();
-        }
+        processLogin(authId, password);
     }
 
-    private boolean dummyLoginProcess(String sUsername, String sPassword){
+    private boolean dummyLoginProcess(String sUsername, String sPassword) {
         for (String credential : DUMMY_CREDENTIALS) {
             String[] pieces = credential.split(":");
             if (pieces[0].equals(sUsername)) {
@@ -72,9 +67,9 @@ public class LoginActivity extends AppCompatActivity {
         return false;
     }
 
-    private void processLogin(String email, String password){
+    private void processLogin(String authId, String password) {
         RequestParams params = new RequestParams();
-        params.put("email", email);
+        params.put("auth_id", authId);
         params.put("password", password);
 
         final ProgressDialog mProgressDialog;
@@ -113,7 +108,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     if (error == 0 && success == 1 && id != 0) {
 
-                        Toast.makeText(LoginActivity.this, "Login successful", Toast.LENGTH_LONG).show();
+                        Toast.makeText(LoginActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
 
                         SessionManager sessionManager = new SessionManager(LoginActivity.this);
                         sessionManager.createLoginSession(String.valueOf(id));
@@ -129,12 +124,12 @@ public class LoginActivity extends AppCompatActivity {
                         finish();
 
                     } else if (error == 1 && success == 0) {
-                        Toast.makeText(LoginActivity.this, "Login unsuccessful", Toast.LENGTH_LONG).show();
+                        Toast.makeText(LoginActivity.this, "Login unsuccessful", Toast.LENGTH_SHORT).show();
 
                     } else if (error == 2 && success == 0) {
-                        Toast.makeText(LoginActivity.this, "No credentials", Toast.LENGTH_LONG).show();
+                        Toast.makeText(LoginActivity.this, "Check your credentials", Toast.LENGTH_SHORT).show();
                     } else {
-                        Toast.makeText(LoginActivity.this, "Unknown error", Toast.LENGTH_LONG).show();
+                        Toast.makeText(LoginActivity.this, "Unknown error", Toast.LENGTH_SHORT).show();
                     }
 
                 } catch (JSONException e) {

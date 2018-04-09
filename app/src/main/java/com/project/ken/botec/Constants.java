@@ -6,13 +6,13 @@ package com.project.ken.botec;
 
 public class Constants {
 
-    private static final String HOST = "http://10.0.3.2:8000";
+    private static final String HOST = "http://10.0.2.2:8000/api";
 
     public static String getHost() {
         return HOST;
     }
 
     public static String loginUser() {
-        return HOST + "/login/";
+        return HOST + "/operators";
     }
 }
