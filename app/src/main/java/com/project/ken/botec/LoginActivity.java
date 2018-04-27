@@ -113,7 +113,7 @@ public class LoginActivity extends AppCompatActivity {
                         SessionManager sessionManager = new SessionManager(LoginActivity.this);
                         sessionManager.createLoginSession(String.valueOf(id));
 
-                        Intent i = new Intent(LoginActivity.this, MainActivity.class);
+                        Intent i = new Intent(LoginActivity.this, DrawerActivity.class);
                         // Closing all the Activities
                         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         // Add new Flag to start new Activity

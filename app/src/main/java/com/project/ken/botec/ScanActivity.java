@@ -4,6 +4,7 @@ import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.ActionBar;
 import android.content.pm.PackageManager;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.NavUtils;
@@ -21,6 +22,7 @@ public class ScanActivity extends AppCompatActivity implements ZBarScannerView.R
     public static String TAG = "ScanActivity";
     public static String SCAN_RESULT = "scan_result";
     private static final int MY_CAMERA_REQUEST_CODE = 100;
+    private MediaPlayer mediaPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +63,9 @@ public class ScanActivity extends AppCompatActivity implements ZBarScannerView.R
 
     @Override
     public void handleResult(Result result) {
+        mediaPlayer = MediaPlayer.create(ScanActivity.this, R.raw.quite_impressed);
+        //mediaPlayer.setLooping(true);
+        mediaPlayer.start();
         String content = result.getContents();
 
         Log.v("The content", content);
@@ -87,4 +92,12 @@ public class ScanActivity extends AppCompatActivity implements ZBarScannerView.R
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (mediaPlayer != null) {
+            mediaPlayer.release();
+        }
+
+    }
 }
