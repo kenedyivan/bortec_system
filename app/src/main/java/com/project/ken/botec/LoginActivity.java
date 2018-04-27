@@ -124,7 +124,7 @@ public class LoginActivity extends AppCompatActivity {
                         finish();
 
                     } else if (error == 1 && success == 0) {
-                        Toast.makeText(LoginActivity.this, "Login unsuccessful", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
 
                     } else if (error == 2 && success == 0) {
                         Toast.makeText(LoginActivity.this, "Check your credentials", Toast.LENGTH_SHORT).show();

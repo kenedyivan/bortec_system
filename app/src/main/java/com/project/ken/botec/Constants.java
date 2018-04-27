@@ -13,6 +13,6 @@ public class Constants {
     }
 
     public static String loginUser() {
-        return HOST + "/operators";
+        return HOST + "/operators/login";
     }
 }
