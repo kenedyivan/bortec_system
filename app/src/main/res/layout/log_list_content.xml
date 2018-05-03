@@ -17,19 +17,17 @@
         android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_width="80dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginRight="5dp"
-            android:orientation="vertical"
-            android:paddingTop="5dp">
+            android:orientation="vertical">
 
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:background="#cecece"
                 android:scaleType="fitXY"
-                android:src="@drawable/avatar" />
+                android:src="@drawable/log_icon" />
         </LinearLayout>
 
 

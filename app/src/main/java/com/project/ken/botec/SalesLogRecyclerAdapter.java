@@ -35,6 +35,8 @@ public class SalesLogRecyclerAdapter extends RecyclerView.Adapter<SalesLogRecycl
         holder.mItemName.setText(mValues.get(position).item_name);
         holder.mQuantity.setText(mValues.get(position).quantity);
         holder.mDate.setText(mValues.get(position).date);
+        holder.mSalesPrice.setText("Shs "+(Integer.parseInt(mValues.get(position).unit_price) * Integer.parseInt(mValues.get(position).quantity)) +
+                " @ " + mValues.get(position).unit_price);
     }
 
     @Override
@@ -47,6 +49,7 @@ public class SalesLogRecyclerAdapter extends RecyclerView.Adapter<SalesLogRecycl
         public final TextView mItemName;
         public final TextView mQuantity;
         public final TextView mDate;
+        public final TextView mSalesPrice;
         public SalesLog.SaleLog mItem;
 
         public ViewHolder(View view) {
@@ -55,6 +58,7 @@ public class SalesLogRecyclerAdapter extends RecyclerView.Adapter<SalesLogRecycl
             mItemName = view.findViewById(R.id.item_name);
             mQuantity = view.findViewById(R.id.quantity);
             mDate = view.findViewById(R.id.date);
+            mSalesPrice = view.findViewById(R.id.total_price);
         }
 
         @Override

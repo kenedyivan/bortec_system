@@ -8,6 +8,7 @@ import android.support.annotation.RequiresApi;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -74,8 +75,14 @@ public class SubmitActivity extends AppCompatActivity {
         mSubmitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                submitTransaction(scanResult, Integer.parseInt(mQuantityEt.getText().toString()),
-                        Integer.parseInt(new SessionManager(SubmitActivity.this).getUserID()));
+                if(!TextUtils.isEmpty(mQuantityEt.getText().toString())){
+                    submitTransaction(scanResult, Integer.parseInt(mQuantityEt.getText().toString()),
+                            Integer.parseInt(new SessionManager(SubmitActivity.this).getUserID()));
+                }else{
+                    Toast.makeText(SubmitActivity.this,"Quantiy empty", Toast.LENGTH_SHORT)
+                            .show();
+                }
+
             }
         });
     }
@@ -140,6 +147,7 @@ public class SubmitActivity extends AppCompatActivity {
 
                     } else if (error == 1 && success == 0) {
                         Toast.makeText(SubmitActivity.this, "Item details not found", Toast.LENGTH_SHORT).show();
+                        mSubmitButton.setEnabled(false);
 
                     } else {
                         Toast.makeText(SubmitActivity.this, "Unknown error", Toast.LENGTH_SHORT).show();

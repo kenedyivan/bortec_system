@@ -16,8 +16,8 @@ public class SalesLog {
     }
 
     public static SaleLog createLogItem(String id, String item_name,
-                                        String quantity, String date) {
-        return new SaleLog(id, item_name, quantity, date);
+                                        String quantity, String date, String unit_price) {
+        return new SaleLog(id, item_name, quantity, date, unit_price);
     }
 
     public static class SaleLog {
@@ -25,12 +25,14 @@ public class SalesLog {
         public final String item_name;
         public final String quantity;
         public final String date;
+        public final String unit_price;
 
-        public SaleLog(String id, String item_name, String quantity, String date) {
+        public SaleLog(String id, String item_name, String quantity, String date, String unit_price) {
             this.id = id;
             this.item_name = item_name;
             this.quantity = quantity;
             this.date = date;
+            this.unit_price = unit_price;
         }
 
         @Override

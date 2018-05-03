@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
@@ -31,6 +32,10 @@ public class SalesLogActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sales_log);
+        ActionBar ab = getSupportActionBar();
+        // Enable the Up button
+        assert ab != null;
+        ab.setDisplayHomeAsUpEnabled(true);
         getMySalesLog(Integer.parseInt(new SessionManager(SalesLogActivity.this).getUserID()));
     }
 
@@ -84,8 +89,9 @@ public class SalesLogActivity extends AppCompatActivity {
                             String itemName = jsonObject0.getString("item_name");
                             String quantity = jsonObject0.getString("quantity");
                             String date = jsonObject0.getString("date");
+                            String unit_price = jsonObject0.getString("unit_price");
 
-                            SalesLog.addSaleLog(SalesLog.createLogItem(id, itemName, quantity, date));
+                            SalesLog.addSaleLog(SalesLog.createLogItem(id, itemName, quantity, date, unit_price));
                         }
 
                         // Set the adapter

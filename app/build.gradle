@@ -26,7 +26,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-    compile 'me.dm7.barcodescanner:zbar:1.8.4'
-    compile 'com.loopj.android:android-async-http:1.4.9'
-    compile 'com.github.markushi:circlebutton:1.1'
+    implementation 'me.dm7.barcodescanner:zbar:1.8.4'
+    implementation 'com.loopj.android:android-async-http:1.4.9'
+    implementation 'com.github.markushi:circlebutton:1.1'
 }
