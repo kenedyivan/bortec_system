@@ -4,6 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by ken on 2/17/18.
  */
@@ -75,6 +78,35 @@ public class SessionManager {
 
     public String getUserID() {
         return pref.getString(KEY_ID, null);
+    }
+
+    public void setUserData(String fname, String lname, String authId,String image) {
+
+
+        editor.putString("firstName", fname);
+        editor.putString("lastName", lname);
+        editor.putString("authId", authId);
+        editor.putString("image", image);
+
+        editor.commit();
+    }
+
+    public void updateData(String fname, String lname) {
+
+
+        editor.putString("firstName", fname);
+        editor.putString("lastName", lname);
+
+        editor.commit();
+    }
+
+    public Map<String, String> getUserData() {
+        Map<String, String> user = new HashMap<>();
+        user.put("firstName", pref.getString("firstName", null));
+        user.put("lastName", pref.getString("lastName", null));
+        user.put("authId", pref.getString("authId", null));
+        user.put("image", pref.getString("image", null));
+        return user;
     }
 
     /**

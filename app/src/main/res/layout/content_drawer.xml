@@ -22,7 +22,7 @@
             android:id="@+id/stock_in_button"
             android:layout_width="150dp"
             android:layout_height="200dp"
-            android:src="@drawable/ic_in_white"
+            android:src="@drawable/ic_out_white"
             app:cb_color="#FFC300 "
             app:cb_pressedRingWidth="8dip" />
     </FrameLayout>
@@ -41,7 +41,7 @@
             android:id="@+id/stock_out_button"
             android:layout_width="150dp"
             android:layout_height="200dp"
-            android:src="@drawable/ic_out_white"
+            android:src="@drawable/ic_in_white"
             app:cb_color="#3D4852"
             app:cb_pressedRingWidth="8dip" />
     </FrameLayout>

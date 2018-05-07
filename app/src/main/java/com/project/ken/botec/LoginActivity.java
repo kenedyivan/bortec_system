@@ -110,8 +110,15 @@ public class LoginActivity extends AppCompatActivity {
 
                         Toast.makeText(LoginActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
 
+                        JSONObject user = jsonObject.getJSONObject("user");
+                        String firstName = user.getString("first_name");
+                        String lastName = user.getString("last_name");
+                        String authId = user.getString("auth_id");
+                        String image = user.getString("image");
+
                         SessionManager sessionManager = new SessionManager(LoginActivity.this);
                         sessionManager.createLoginSession(String.valueOf(id));
+                        sessionManager.setUserData(firstName, lastName, authId, image);
 
                         Intent i = new Intent(LoginActivity.this, DrawerActivity.class);
                         // Closing all the Activities
